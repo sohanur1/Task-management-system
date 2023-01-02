@@ -1,0 +1,35 @@
+.add-div{
+    float: right;
+  }
+  
+  .main-content{
+    margin : 20px;
+  }
+  
+  .left-span{
+    float : left;
+  }
+  
+  .right-span{
+    float: right;
+  }
+  
+  .task-content{
+    margin: 50x;
+  }
+  
+  .full-width{
+    margin-bottom: 20px;
+  }
+  
+  .parent-task{
+    width: 700px;
+    border: 1px solid black;
+    padding: 10px;
+  }
+  
+  .task-title{
+    text-align: center !important;
+  }
+  
+  

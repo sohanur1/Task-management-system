@@ -1,0 +1,75 @@
+<div class="main-content">
+    <h1>Add Task</h1>
+    <div>
+        <form [formGroup]="taskForm">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Title</mat-label>
+                <input matInput placeholder="Write title within 100 characters" formControlName="title" required>
+            </mat-form-field>
+            <mat-error *ngIf="f.title?.invalid && f.title?.touched">
+                Title is required and can't be more than 100 characters.
+            </mat-error>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Description</mat-label>
+                <input matInput placeholder="Write description within 150 characters" formControlName="description"
+                    required>
+            </mat-form-field>
+            <mat-error *ngIf="f.description?.invalid && f.description?.touched">
+                Title is required and can't be more than 150 characters.
+            </mat-error>
+
+            <mat-radio-group formControlName="priority">
+                <mat-radio-button value="Low">Low</mat-radio-button>
+                <mat-radio-button  value="Medium">Medium</mat-radio-button>
+                <mat-radio-button  value="High">High</mat-radio-button>
+              </mat-radio-group>
+
+            <div class="row my-2">
+                <div class="col">
+                    <label class=" ">Start date</label>
+                    <input class="form-control" formControlName="fromDate" type="date" placeholder="Enter From Date" />
+                </div>
+                <div class="col">
+                    <label class=" ">End date</label>
+                    <input class="form-control" formControlName="toDate" type="date" [min]="certainDate"
+                        placeholder="Enter To Date" />
+                </div>
+            </div>
+
+            <div class="row">
+                <select formControlName="assignedPerson">
+                    <option disabled>Select assigned person</option>
+                    <option>Choose assigned person</option>
+                    <option *ngFor="let suit of assignedPerson">{{suit}}</option>
+                  </select>
+            </div>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="statusId" [disabled]="newStatusOpened" required>
+              <mat-option *ngFor="let status of statusList" [value]="status?.id">
+                {{status?.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button class="ml-3" type="button" mat-raised-button color="accent" (click)="openNewStatus()">+</button>
+          <mat-form-field class="example-full-width" appearance="fill" *ngIf="newStatusOpened">
+            <mat-label>New Status Name</mat-label>
+            <input #newCategoryName matInput placeholder="New Status Name" formControlName="newStatusName" required>
+          </mat-form-field>
+          <mat-error *ngIf="f.newStatusName?.invalid && f.newStatusName?.touched">
+              New Status Name is required
+          </mat-error>
+
+            <div class="buttons">
+                <button class="left-btn" type="button" mat-raised-button color="warn"
+                    (click)="onCancel()">Cancel</button>
+                <button class="right-btn" [disabled]="taskForm.invalid" 
+                type="button" mat-raised-button color="primary" (click)="saveTask()">Save</button>
+
+            </div>
+        </form>
+    </div>
+
+</div>
